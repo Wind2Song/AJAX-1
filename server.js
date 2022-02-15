@@ -28,7 +28,8 @@ var server = http.createServer(function(request, response){
     const page1 = fs.readFileSync('db/page1.json').toString()
     const array = JSON.parse(page1)
     const result = array.map(item=>`<li>${item.id}</li>`).join('')
-    string = string.replace('{{page1}}', `<ul id="xxx">${result}</ul>`)
+    // string.replace('{{我是内容}}', page1) // string里的这个内容（{{我是占位符}}）替换成page1里拿的字符串；
+    string = string.replace('{{我是占位符}}', `<ul id="xxx">${result}</ul>`)  // 先是这里看懂，replace是怎么实现只替换string里的ul里的id内容的
     response.write(string)
     response.end()
   } else if(path === '/main.js'){
